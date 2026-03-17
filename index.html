@@ -28,17 +28,11 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
-    
     .logo {
       width: 200px;
       max-width: 100%;
       margin: 0 auto 10px;
       display: block;
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 28px;
     }
 
     .subtitle {
@@ -52,6 +46,7 @@
       color: #cfcfcf;
       line-height: 1.5;
     }
+
     .btn {
       display: block;
       width: 100%;
@@ -63,16 +58,32 @@
       font-size: 16px;
       text-decoration: none;
       cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
     }
+
     .primary {
       background: #fff;
       color: #111;
       font-weight: bold;
     }
+
     .secondary {
       background: #2b2b2b;
       color: #fff;
     }
+
+    .secondary.copied {
+      background: #fff;
+      color: #111;
+      transform: scale(1.03);
+    }
+
+    .secondary.failed {
+      background: #4a2222;
+      color: #fff;
+      transform: scale(1.03);
+    }
+
     .mail {
       margin-top: 16px;
       font-size: 15px;
@@ -80,6 +91,7 @@
       word-break: break-all;
       display: none;
     }
+
     .note {
       margin-top: 16px;
       font-size: 14px;
@@ -102,8 +114,8 @@
        href="mailto:marvin@subvoidagency.com?subject=Booking%20Request%20FLOWZ&body=SUBVOID%20Booking%20Request%0AArtist%3A%20FLOWZ%0AEvent%3A%0ADate%3A%0ALocation%3A%0ACapacity%3A%0AImportant%20details%3A">
       Open email app
     </a>
-
-    <button class="btn secondary" onclick="copyMail()">
+    
+    <button class="btn secondary" id="copyBtn" onclick="copyMail()">
       Copy email address
     </button>
 
@@ -119,12 +131,31 @@
   <script>
     function copyMail() {
       const mail = "marvin@subvoidagency.de";
+      const note = document.getElementById("note");
+      const mailEl = document.getElementById("mail");
+      const btn = document.getElementById("copyBtn");
 
       navigator.clipboard.writeText(mail).then(() => {
-        document.getElementById("note").textContent = "Email address copied.";
+        note.textContent = "Email address copied ✓";
+        btn.textContent = "Copied ✓";
+        btn.classList.add("copied");
+
+        setTimeout(() => {
+          btn.textContent = "Copy email address";
+          btn.classList.remove("copied");
+        }, 1200);
+
       }).catch(() => {
-        document.getElementById("note").textContent = "Copy failed. Please copy manually.";
-        document.getElementById("mail").style.display = "block";
+        note.textContent = "Copy failed. Please copy manually.";
+        mailEl.style.display = "block";
+
+        btn.textContent = "Copy failed";
+        btn.classList.add("failed");
+
+        setTimeout(() => {
+          btn.textContent = "Copy email address";
+          btn.classList.remove("failed");
+        }, 1400);
       });
     }
   </script>
