@@ -27,10 +27,27 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
+
+    
+    .logo {
+      width: 200px;
+      max-width: 100%;
+      margin: 0 auto 10px;
+      display: block;
+    }
+
     h1 {
       margin-top: 0;
       font-size: 28px;
     }
+
+    .subtitle {
+      display: block;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+
     p {
       color: #cfcfcf;
       line-height: 1.5;
@@ -61,7 +78,7 @@
       font-size: 15px;
       color: #aaa;
       word-break: break-all;
-      display: none; /* 👈 versteckt */
+      display: none;
     }
     .note {
       margin-top: 16px;
@@ -73,12 +90,9 @@
 
 <body>
   <div class="card">
-    <h1 style="margin:0;">
-      <span style="display:block;">FLOWZ</span>
-      <span style="display:block; font-size:18px; color:#aaa; font-weight:normal;">
-        Booking Inquiries
-      </span>
-    </h1>
+
+    <img src="logo.png" alt="FLOWZ" class="logo">
+    <span class="subtitle">Booking Inquiries</span>
 
     <p>
       For booking inquiries, open your email app or copy the address below.
@@ -93,7 +107,6 @@
       Copy email address
     </button>
 
-    <!-- Wird nur bei Fehler sichtbar -->
     <div class="mail" id="mail">
       marvin@subvoidagency.de
     </div>
@@ -111,7 +124,7 @@
         document.getElementById("note").textContent = "Email address copied.";
       }).catch(() => {
         document.getElementById("note").textContent = "Copy failed. Please copy manually.";
-        document.getElementById("mail").style.display = "block"; // 👈 jetzt anzeigen
+        document.getElementById("mail").style.display = "block";
       });
     }
   </script>
