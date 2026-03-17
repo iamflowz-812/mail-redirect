@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Booking Request FLOWZ</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -60,6 +61,7 @@
       font-size: 15px;
       color: #aaa;
       word-break: break-all;
+      display: none; /* 👈 versteckt */
     }
     .note {
       margin-top: 16px;
@@ -68,29 +70,43 @@
     }
   </style>
 </head>
+
 <body>
   <div class="card">
-    <h1>Booking Request FLOWZ</h1>
-    
-    <a class="btn primary" href="mailto:marvin@subvoidagency.com?subject=Booking%20Request%20FLOWZ&body=SUBVOID%20Booking%20Request%0AArtist%3A%20FLOWZ%0AEvent%3A%0ADate%3A%0ALocation%0ACapacity%3A%0AImportant%20details%3A">
-      Submit your request here
+    <h1>Booking Request</h1>
+
+    <p>
+      For booking inquiries, open your email app or copy the address below.
+    </p>
+
+    <a class="btn primary"
+       href="mailto:marvin@subvoidagency.com?subject=Booking%20Request%20FLOWZ&body=SUBVOID%20Booking%20Request%0AArtist%3A%20FLOWZ%0AEvent%3A%0ADate%3A%0ALocation%3A%0ACapacity%3A%0AImportant%20details%3A">
+      Open email app
     </a>
 
     <button class="btn secondary" onclick="copyMail()">
       Copy email address
     </button>
 
-    <div class="mail">marvin@subvoidagency.de</div>
-    <div class="note" id="note">If no email app opens, copy the address and send the email manually.</div>
+    <!-- Wird nur bei Fehler sichtbar -->
+    <div class="mail" id="mail">
+      marvin@subvoidagency.de
+    </div>
+
+    <div class="note" id="note">
+      If nothing happens, try copying the email address.
+    </div>
   </div>
 
   <script>
     function copyMail() {
       const mail = "marvin@subvoidagency.de";
+
       navigator.clipboard.writeText(mail).then(() => {
-        document.getElementById("note").textContent = "The email address has been copied.";
+        document.getElementById("note").textContent = "Email address copied.";
       }).catch(() => {
-        document.getElementById("note").textContent = "Copying didn't work. Please copy the address manually.";
+        document.getElementById("note").textContent = "Copy failed. Please copy manually.";
+        document.getElementById("mail").style.display = "block"; // 👈 jetzt anzeigen
       });
     }
   </script>
