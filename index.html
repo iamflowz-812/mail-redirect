@@ -136,7 +136,7 @@
       const btn = document.getElementById("copyBtn");
 
       navigator.clipboard.writeText(mail).then(() => {
-        note.textContent = "Email address copied ✓";
+        note.textContent = "Email address copied";
         btn.textContent = "Copied ✓";
         btn.classList.add("copied");
 
